@@ -1,0 +1,20 @@
+.field-button {
+    outline: none;
+    background: #696969;
+    color: white;
+    border: 1px solid #272727;
+    width: 100px;
+    height: 100px;
+    transition: .1s;
+    font-family: cursive;
+    font-size: 66px;
+    cursor: pointer;
+}
+
+.field-button:active {
+    background: #555555;
+}
+
+.field-button-win {
+    color: black;
+}

@@ -1,0 +1,16 @@
+.restart_button {
+    outline: none;
+    cursor: pointer;
+    background: dimgray;
+    color: white;
+    font-family: cursive;
+    border: none;
+    font-size: 20px;
+    border-radius: 6px;
+    transition: .1s;
+    padding: 5px 20px;
+}
+
+.restart_button:active {
+    background: #555555;
+}
