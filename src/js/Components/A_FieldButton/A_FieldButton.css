@@ -6,7 +6,7 @@
     width: 100px;
     height: 100px;
     transition: .1s;
-    font-family: "Comic Sans MS", "Segoe UI", cursive;
+    font-family: "Comic Sans MS", "Segoe UI", sans-serif;
     font-size: 66px;
     cursor: pointer;
 }
