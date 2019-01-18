@@ -1,10 +1,11 @@
 .o_game {
-    margin: 50px 300px;
+    margin: 4% 27%;
     display: flex;
+    justify-content: space-between;
 }
 
 .game-info {
-    font-family: cursive;
+    font-family: "Comic Sans MS", "Segoe UI", cursive;
     font-size: 20px;
     margin-left: 75px;
 }

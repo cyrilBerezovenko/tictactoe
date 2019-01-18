@@ -95,7 +95,7 @@
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".field-button {\r\n    outline: none;\r\n    background: #696969;\r\n    color: white;\r\n    border: 1px solid #272727;\r\n    width: 100px;\r\n    height: 100px;\r\n    transition: .1s;\r\n    font-family: cursive;\r\n    font-size: 66px;\r\n    cursor: pointer;\r\n}\r\n\r\n.field-button:active {\r\n    background: #555555;\r\n}\r\n\r\n.field-button-win {\r\n    color: black;\r\n}\r\n", ""]);
+exports.push([module.i, ".field-button {\r\n    outline: none;\r\n    background: #696969;\r\n    color: white;\r\n    border: 1px solid #272727;\r\n    width: 100px;\r\n    height: 100px;\r\n    transition: .1s;\r\n    font-family: \"Comic Sans MS\", \"Segoe UI\", cursive;\r\n    font-size: 66px;\r\n    cursor: pointer;\r\n}\r\n\r\n.field-button:active {\r\n    background: #555555;\r\n}\r\n\r\n.field-button-win {\r\n    color: black;\r\n}\r\n", ""]);
 
 
 
@@ -110,7 +110,7 @@ exports.push([module.i, ".field-button {\r\n    outline: none;\r\n    background
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".restart_button {\r\n    outline: none;\r\n    cursor: pointer;\r\n    background: dimgray;\r\n    color: white;\r\n    font-family: cursive;\r\n    border: none;\r\n    font-size: 20px;\r\n    border-radius: 6px;\r\n    transition: .1s;\r\n    padding: 5px 20px;\r\n}\r\n\r\n.restart_button:active {\r\n    background: #555555;\r\n}", ""]);
+exports.push([module.i, ".restart_button {\r\n    outline: none;\r\n    cursor: pointer;\r\n    background: dimgray;\r\n    color: white;\r\n    font-family: \"Comic Sans MS\", \"Segoe UI\", cursive;\r\n    border: none;\r\n    font-size: 20px;\r\n    border-radius: 6px;\r\n    transition: .1s;\r\n    padding: 5px 20px;\r\n}\r\n\r\n.restart_button:active {\r\n    background: #555555;\r\n}", ""]);
 
 
 
@@ -125,7 +125,7 @@ exports.push([module.i, ".restart_button {\r\n    outline: none;\r\n    cursor: 
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".gamefield {\r\n    display: flex;\r\n    width: 300px;\r\n    height: 300px;\r\n    flex-wrap: wrap;\r\n}", ""]);
+exports.push([module.i, ".gamefield {\r\n    display: flex;\r\n    flex-direction: column;\r\n    width: 300px;\r\n    height: 300px;\r\n    flex-wrap: wrap;\r\n}", ""]);
 
 
 
@@ -140,7 +140,7 @@ exports.push([module.i, ".gamefield {\r\n    display: flex;\r\n    width: 300px;
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".o_game {\r\n    margin: 50px 300px;\r\n    display: flex;\r\n}\r\n\r\n.game-info {\r\n    font-family: cursive;\r\n    font-size: 20px;\r\n    margin-left: 75px;\r\n}", ""]);
+exports.push([module.i, ".o_game {\r\n    margin: 4% 27%;\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.game-info {\r\n    font-family: \"Comic Sans MS\", \"Segoe UI\", cursive;\r\n    font-size: 20px;\r\n    margin-left: 75px;\r\n}", ""]);
 
 
 
