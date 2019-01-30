@@ -1,12 +1,11 @@
 var path = require('path');
 
 module.exports = {
-    context: "G:\\WebStormProjects\\tictactoe",
     devtool: "source-map",
     mode: "development",
-    entry: ".\\src\\js\\index.js",
+    entry: "./src/js/index.js",
     output: {
-        path: "G:\\WebStormProjects\\tictactoe\\dist",
+        path: path.resolve(__dirname, "dist"),
         filename: "bundle.js"
     },
     module: {
