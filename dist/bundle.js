@@ -24004,20 +24004,21 @@ function (_React$Component) {
 
     _classCallCheck(this, M_Gamefield);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(M_Gamefield).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(M_Gamefield).call(this, props));
 
     _this.handleClick = function (index) {
-      return props.onclick.apply(props.o_game, [index]);
+      return _this.props.onclick.apply(_this.props.o_game, [index]);
     };
 
     _this.state = {
-      squares: props.squares.slice().map(function (value, index) {
+      squares: _this.props.squares.slice().map(function (value, index) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_FieldButton_A_FieldButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
           onClick: function onClick() {
             return _this.handleClick(index);
           },
           value: value,
-          key: index
+          key: index,
+          isWin: _this.props.winCages[index]
         });
       })
     };
@@ -24116,13 +24117,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -24151,6 +24152,7 @@ function (_React$Component) {
       oCages: []
     };
     _this.wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+    _this.click = _this.click.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -24159,40 +24161,38 @@ function (_React$Component) {
     value: function click(index) {
       var sq = this.state.squares.slice();
       if (sq[index] !== '' || !this.state.started) return;
+      var newXCages = this.state.xCages.slice();
+      var newOCages = this.state.oCages.slice();
 
       if (this.state.isXNow) {
         sq[index] = 'X';
-        this.state.xCages.push(index + 1);
+        newXCages.push(index + 1);
       } else {
         sq[index] = 'O';
-        this.state.oCages.push(index + 1);
+        newOCages.push(index + 1);
+      }
+
+      var isWinner = O_Game.checkWinner(sq, this.wins);
+      var winCages,
+          winner,
+          started = true;
+
+      if (isWinner) {
+        debugger;
+        winCages = isWinner.winCages;
+        winner = isWinner.winner;
+        started = false;
       }
 
       this.setState({
         squares: sq,
-        isXNow: !this.state.isXNow
+        isXNow: !this.state.isXNow,
+        xCages: newXCages,
+        oCages: newOCages,
+        winCages: winCages || Array(9).fill(0),
+        winner: winner,
+        started: started
       });
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      var _this2 = this;
-
-      if (!this.state.started) return;
-      var sq = this.state.squares;
-      var w = this.wins;
-
-      for (var i = 0; i < w.length; i++) {
-        if (sq[w[i][0]] !== '' && sq[w[i][0]] === sq[w[i][1]] && sq[w[i][1]] === sq[w[i][2]]) {
-          w[i].forEach(function (val) {
-            return _this2.state.winCages[val] = 1;
-          });
-          this.setState({
-            started: false,
-            winner: sq[w[i][0]]
-          });
-        }
-      }
     }
   }, {
     key: "restart",
@@ -24210,7 +24210,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "o_game"
@@ -24231,9 +24231,48 @@ function (_React$Component) {
         winner: this.state.winner
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_RestartButton_A_RestartButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
         onclick: function onclick() {
-          return _this3.restart();
+          return _this2.restart();
         }
       })));
+    }
+  }], [{
+    key: "checkWinner",
+    value: function checkWinner(squares, wins) {
+      for (var i = 0; i < wins.length; i++) {
+        if (squares[wins[i][0]] !== '' && squares[wins[i][0]] === squares[wins[i][1]] && squares[wins[i][1]] === squares[wins[i][2]]) {
+          var arr = Array(9).fill(0);
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = wins[i][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var _i = _step.value;
+              arr[_i] = 1;
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+
+          return {
+            winner: squares[wins[i][0]],
+            winCages: arr
+          };
+        }
+      }
+
+      return false;
     }
   }]);
 

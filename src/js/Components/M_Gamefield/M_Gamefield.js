@@ -5,11 +5,11 @@ import './M_Gamefield.css'
 export default class M_Gamefield extends React.Component {
 
     constructor(props) {
-        super();
-        this.handleClick = (index) => props.onclick.apply(props.o_game, [index]);
+        super(props);
+        this.handleClick = (index) => this.props.onclick.apply(this.props.o_game, [index]);
         this.state = {
-            squares: props.squares.slice().map((value,index) =>
-                <A_FieldButton onClick={() => this.handleClick(index)} value={value} key={index}/>)
+            squares: this.props.squares.slice().map((value,index) =>
+                <A_FieldButton onClick={() => this.handleClick(index)} value={value} key={index} isWin={this.props.winCages[index]}/>)
         };
     }
 

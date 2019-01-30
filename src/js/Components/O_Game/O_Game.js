@@ -27,37 +27,52 @@ export default class O_Game extends React.Component {
             [0,4,8],
             [2,4,6]
         ];
+        this.click = this.click.bind(this);
     }
 
     click(index) {
         let sq = this.state.squares.slice();
         if(sq[index] !== '' || !this.state.started) return;
+        let newXCages = this.state.xCages.slice();
+        let newOCages = this.state.oCages.slice();
         if(this.state.isXNow) {
             sq[index] = 'X';
-            this.state.xCages.push(index+1);
+            newXCages.push(index+1);
         } else {
             sq[index] = 'O';
-            this.state.oCages.push(index+1);
+            newOCages.push(index+1);
+        }
+        let isWinner = O_Game.checkWinner(sq, this.wins);
+        let winCages, winner, started = true;
+        if(isWinner) {
+            debugger;
+            winCages = isWinner.winCages;
+            winner = isWinner.winner;
+            started = false;
         }
         this.setState({
             squares: sq,
-            isXNow: !this.state.isXNow
+            isXNow: !this.state.isXNow,
+            xCages: newXCages,
+            oCages: newOCages,
+            winCages : winCages || Array(9).fill(0),
+            winner : winner,
+            started : started
         });
     }
 
-    componentDidUpdate() {
-        if(!this.state.started) return;
-        let sq = this.state.squares;
-        let w = this.wins;
-        for(let i = 0; i < w.length; i++) {
-            if(sq[w[i][0]] !== '' && (sq[w[i][0]] === sq[w[i][1]] && sq[w[i][1]] === sq[w[i][2]])) {
-                w[i].forEach(val => this.state.winCages[val] = 1);
-                this.setState({
-                    started: false,
-                    winner: sq[w[i][0]],
-                });
+    static checkWinner(squares, wins) {
+        for(let i = 0; i < wins.length; i++) {
+            if(squares[wins[i][0]] !== '' && (squares[wins[i][0]] === squares[wins[i][1]] && squares[wins[i][1]] === squares[wins[i][2]])) {
+                let arr = Array(9).fill(0);
+                for(let i of wins[i]) arr[i] = 1;
+                return {
+                    winner : squares[wins[i][0]],
+                    winCages : arr
+                };
             }
         }
+        return false;
     }
 
     restart() {
